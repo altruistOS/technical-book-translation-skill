@@ -31,23 +31,13 @@ SPAN_RE = re.compile(r"\$\$?[^$]*\$\$?")
 
 
 def spans(line):
-    r"""Return the ordered math spans of a line (text between $...$ pairs).
-    An escaped \$ is a literal dollar, not a delimiter. A line with an
-    unbalanced $ count has no reliable math structure and yields []."""
-    tmp = line.replace("\\$", "\x00")
-    parts = tmp.split("$")
-    if len(parts) % 2 == 0:
-        return []
-    return [p.replace("\x00", "\\$") for p in parts[1::2]]
+    """Return the ordered math spans of a line (text between $...$ pairs)."""
+    return line.split("$")[1::2]
 
 
 def outside_math(line):
     """Return the concatenation of everything outside $...$ regions."""
-    tmp = line.replace("\\$", "\x00")
-    parts = tmp.split("$")
-    if len(parts) % 2 == 0:
-        return line
-    return "".join(p.replace("\x00", "\\$") for p in parts[0::2])
+    return "".join(line.split("$")[0::2])
 
 
 def has_cjk(s):
