@@ -1,6 +1,8 @@
 ---
 name: technical-book-translation
 description: Use when turning a technical book or PDF into a translated Markdown edition while preserving equations exactly - includes MinerU/OCR extraction, hand-annotated PDFs (comment boxes recognized as images), figure/image handling, chapter page-range mapping, and verifying translation fidelity.
+metadata:
+  opencode/slash: "true"
 ---
 
 # Skill: Technical Book Translation
